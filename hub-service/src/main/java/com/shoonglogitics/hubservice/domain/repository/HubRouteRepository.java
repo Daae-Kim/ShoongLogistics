@@ -19,5 +19,7 @@ public interface HubRouteRepository {
 
     List<HubRoute> findByDepartureHubId(HubId departureId);
 
+    List<HubRoute> findByHubId(UUID hubId);
+
     long count();
 }

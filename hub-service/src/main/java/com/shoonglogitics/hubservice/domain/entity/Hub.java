@@ -93,7 +93,7 @@ public class Hub extends BaseAggregateRoot<Hub> {
 		}
 
 		this.softDelete(userId);
-		registerEvent(new HubDeactivatedEvent(this.id));
+		registerEvent(new HubDeactivatedEvent(this.id, userId));
 	}
 
 	public boolean isCentralHub() {

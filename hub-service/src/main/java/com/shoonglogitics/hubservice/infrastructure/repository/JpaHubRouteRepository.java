@@ -28,4 +28,10 @@ public interface JpaHubRouteRepository extends JpaRepository<HubRoute, UUID> {
             "WHERE hr.departureHubId = :departureId " +
             "AND hr.deletedAt IS NULL")
     List<HubRoute> findByDepartureHubId(@Param("departureId") HubId departureId);
+
+    @Query("SELECT hr FROM HubRoute hr " +
+        "WHERE (hr.departureHubId.value = :hubId " +
+        "OR hr.arrivalHubId.value = :hubId) " +
+        "AND hr.deletedAt IS NULL")
+    List<HubRoute> findByHubId(@Param("hubId") UUID hubId);
 }

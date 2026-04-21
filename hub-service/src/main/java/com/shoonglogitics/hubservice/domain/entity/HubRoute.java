@@ -77,4 +77,8 @@ public class HubRoute extends BaseAggregateRoot<HubRoute> {
 		}
 	}
 
+	public void deactivate(Long userId) {
+		this.softDelete(userId);
+	}
+
 }

@@ -46,4 +46,9 @@ public class HubRouteRepositoryAdapter implements HubRouteRepository {
     public long count() {
         return jpaHubRouteRepository.count();
     }
+
+    @Override
+    public List<HubRoute> findByHubId(UUID hubId) {
+        return jpaHubRouteRepository.findByHubId(hubId);
+    }
 }

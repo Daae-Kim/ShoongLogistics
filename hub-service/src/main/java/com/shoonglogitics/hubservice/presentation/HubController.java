@@ -73,7 +73,7 @@ public class HubController {
 	@PreAuthorize("hasAnyRole('MASTER')")
 	public ResponseEntity<ApiResponse<Void>> deleteHub(@PathVariable UUID hubId,
 		@AuthenticationPrincipal AuthUser authUser) {
-		hubService.deleteHub(hubId, authUser.getUserId());
+		hubService.deleteHub(hubId, authUser != null ? authUser.getUserId() : 1L);
 		return ResponseEntity.ok(ApiResponse.success("삭제 완료"));
 	}
 }
