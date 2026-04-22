@@ -18,8 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class HubEventHandler {
 
-	private final HubRouteService hubRouteService;
-
 	@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
 	@CacheEvict(value = "hubs", allEntries = true)
 	public void handleHubCreated(HubCreatedEvent event) {
@@ -31,7 +29,6 @@ public class HubEventHandler {
 	@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
 	@CacheEvict(value = {"hubs", "hub", "routes"}, allEntries = true)
 	public void handleHubDeactivated(HubDeactivatedEvent event) {
-		hubRouteService.deactivateByHubId(event.getHubId(), event.getDeletedBy());
 		log.info("허브 삭제 - 경로 비활성화 및 캐시 무효화: hubId={}", event.getHubId());
 	}
 
